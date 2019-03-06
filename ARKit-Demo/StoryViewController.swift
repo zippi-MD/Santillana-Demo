@@ -25,6 +25,8 @@ class StoryViewController: UIViewController{
     
     @IBOutlet weak var showFood: UIView!
     
+    @IBOutlet weak var backToMap: UIView!
+    
     @IBOutlet weak var foodInformation: UIView!
     
     @IBOutlet weak var foodImage: UIImageView!
@@ -60,10 +62,13 @@ class StoryViewController: UIViewController{
         crosshair.layer.cornerRadius = 15
         countryName.layer.cornerRadius = 10
         showFood.layer.cornerRadius = 10
+        backToMap.backgroundColor = showFood.backgroundColor
+        backToMap.layer.cornerRadius = 10
         foodInformation.layer.cornerRadius = 10
         
         countryName.isHidden = true
         showFood.isHidden = true
+        backToMap.isHidden = true
         foodInformation.isHidden = true
         
         //informationView.isHidden = true
@@ -127,8 +132,24 @@ class StoryViewController: UIViewController{
     }
     
     
+    @IBAction func backToMap(_ sender: UIButton) {
+        for country in continent.childNodes{
+            country.isHidden = false
+            if country.childNodes.count > 0 {
+                for child in country.childNodes {
+                    child.removeFromParentNode()
+                }
+            }
+        }
+        gameState = .viewingStory
+        
+        backToMap.isHidden = true
+    }
     
     @IBAction func showFood(_ sender: Any) {
+        
+        backToMap.isHidden = false
+        
         gameState = .countrySelected
         
         showFood.isHidden = true
@@ -146,21 +167,24 @@ class StoryViewController: UIViewController{
                 print(country.position)
                 print(country.worldPosition)
                 print(country.worldOrientation)
+                //make a fruits
+                let someFruit = SCNNode(geometry: SCNSphere(radius: 0.03))
+                someFruit.geometry?.firstMaterial?.diffuse.contents = UIColor.red
+                someFruit.name = "Food-Manzana-manzana-Fruto del manzano, comestible, de forma redondeada y algo hundida por los extremos, piel fina, de color verde, amarillo o rojo, carne blanca y jugosa, de sabor dulce o ácido, y semillas en forma de pepitas encerradas en una cápsula de cinco divisiones."
+                someFruit.position = SCNVector3(countryPosition.x - 3, countryPosition.y, countryPosition.z - 10)
+                
+                let otherFruit = SCNNode(geometry: SCNSphere(radius: 0.03))
+                otherFruit.geometry?.firstMaterial?.diffuse.contents = UIColor.orange
+                otherFruit.name = "Food-Naranja-naranja-Fruto del naranjo, comestible, de forma redonda, cáscara gruesa y rugosa y pulpa dividida en gajos, agridulce y muy jugosa."
+                otherFruit.position = SCNVector3(countryPosition.x - 3, countryPosition.y, countryPosition.z - 11)
+                
+                country.addChildNode(otherFruit)
+                country.addChildNode(someFruit)
+                otherFruit.scale = SCNVector3(10,10,10)
+                someFruit.scale = SCNVector3(10, 10, 10)
             }
+            
         }
-        
-        let someFruit = SCNNode(geometry: SCNSphere(radius: 0.03))
-        someFruit.geometry?.firstMaterial?.diffuse.contents = UIColor.red
-        someFruit.name = "Food-Manzana-manzana-Fruto del manzano, comestible, de forma redondeada y algo hundida por los extremos, piel fina, de color verde, amarillo o rojo, carne blanca y jugosa, de sabor dulce o ácido, y semillas en forma de pepitas encerradas en una cápsula de cinco divisiones."
-        someFruit.position = SCNVector3(x: countryPosition.x + 0.01, y: 0, z: countryPosition.z + 0.01)
-        
-        let otherFruit = SCNNode(geometry: SCNSphere(radius: 0.03))
-        otherFruit.geometry?.firstMaterial?.diffuse.contents = UIColor.orange
-        otherFruit.name = "Food-Naranja-naranja-Fruto del naranjo, comestible, de forma redonda, cáscara gruesa y rugosa y pulpa dividida en gajos, agridulce y muy jugosa."
-        otherFruit.position = SCNVector3(x: countryPosition.x - 0.05, y: 0, z: countryPosition.z - 0.05)
-        
-        continent.addChildNode(otherFruit)
-        continent.addChildNode(someFruit)
         
     }
     
