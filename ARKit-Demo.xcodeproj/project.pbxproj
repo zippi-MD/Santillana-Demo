@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		21206FB122306AAE000777EC /* QuestionsData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21206FB022306AAE000777EC /* QuestionsData.swift */; };
 		D4BF12472213913100270BB4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4BF12462213913100270BB4 /* AppDelegate.swift */; };
 		D4BF124C2213913100270BB4 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D4BF124A2213913100270BB4 /* Main.storyboard */; };
 		D4BF124E2213913500270BB4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D4BF124D2213913500270BB4 /* Assets.xcassets */; };
@@ -20,6 +21,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		21206FB022306AAE000777EC /* QuestionsData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionsData.swift; sourceTree = "<group>"; };
 		D4BF12432213913100270BB4 /* ARKit-Demo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "ARKit-Demo.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D4BF12462213913100270BB4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D4BF124B2213913100270BB4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -72,6 +74,7 @@
 				D4BF124D2213913500270BB4 /* Assets.xcassets */,
 				D4BF124F2213913500270BB4 /* LaunchScreen.storyboard */,
 				D4BF12522213913500270BB4 /* Info.plist */,
+				21206FB022306AAE000777EC /* QuestionsData.swift */,
 			);
 			path = "ARKit-Demo";
 			sourceTree = "<group>";
@@ -161,6 +164,7 @@
 			files = (
 				D4BF126D221490B500270BB4 /* RWLabel.swift in Sources */,
 				D4BF126E221490B500270BB4 /* SCNVector3Extension.swift in Sources */,
+				21206FB122306AAE000777EC /* QuestionsData.swift in Sources */,
 				D4BF12692214900B00270BB4 /* SCNNodeHelpers.swift in Sources */,
 				D4BF12652213ABEA00270BB4 /* StoryViewController.swift in Sources */,
 				D4BF126F221490B500270BB4 /* FloatingPointExtension.swift in Sources */,

@@ -13,6 +13,7 @@ enum gameState {
     case selectingPlane
     case viewingStory
     case countrySelected
+    case onGame
 }
 
 class StoryViewController: UIViewController{
@@ -33,6 +34,15 @@ class StoryViewController: UIViewController{
     @IBOutlet weak var foodName: UILabel!
     
     @IBOutlet weak var foodDescription: UILabel!
+    
+    @IBOutlet weak var questionPanel: UIView!
+    @IBOutlet weak var questionTitle: UILabel!
+    @IBOutlet weak var questionBody: UILabel!
+    
+    @IBOutlet weak var startGame: UIView!
+    
+
+    @IBOutlet weak var gameStateButton: UIButton!
     
     
     var gameState: gameState = .selectingPlane
@@ -65,11 +75,14 @@ class StoryViewController: UIViewController{
         backToMap.backgroundColor = showFood.backgroundColor
         backToMap.layer.cornerRadius = 10
         foodInformation.layer.cornerRadius = 10
+        questionPanel.layer.cornerRadius = 10
+        startGame.layer.cornerRadius = 10
         
         countryName.isHidden = true
         showFood.isHidden = true
         backToMap.isHidden = true
         foodInformation.isHidden = true
+        questionPanel.isHidden = true
         
         //informationView.isHidden = true
         
@@ -143,7 +156,33 @@ class StoryViewController: UIViewController{
         }
         gameState = .viewingStory
         
+        startGame.isHidden = false
+        
         backToMap.isHidden = true
+    }
+    
+    
+    @IBAction func startGame(_ sender: UIButton) {
+        if gameState != .onGame{
+            gameState = .onGame
+            foodInformation.isHidden = true
+            countryName.isHidden = true
+            foodInformation.isHidden = true
+            backToMap.isHidden = true
+            
+            questionPanel.isHidden = false
+            
+            gameStateButton.setTitle("Abandonar", for: .normal)
+            
+            startGame.backgroundColor = UIColor.red.withAlphaComponent(0.5)
+            //logic of game
+        }else{
+            gameState = .viewingStory
+            questionPanel.isHidden = true
+            gameStateButton.setTitle("Juego", for: .normal)
+            
+            startGame.backgroundColor = backToMap.backgroundColor
+        }
     }
     
     @IBAction func showFood(_ sender: Any) {
@@ -153,6 +192,10 @@ class StoryViewController: UIViewController{
         gameState = .countrySelected
         
         showFood.isHidden = true
+        
+        questionPanel.isHidden = true
+        
+        startGame.isHidden = true
         
         var countryPosition = SCNVector3(x: 0, y: 0, z: 0)
         
@@ -313,6 +356,9 @@ extension StoryViewController: ARSCNViewDelegate {
                     self.crosshair.backgroundColor = UIColor.lightGray
                     
                 }
+                
+            default:
+                break
                 
             }
         }
