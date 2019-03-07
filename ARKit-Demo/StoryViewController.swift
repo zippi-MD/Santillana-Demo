@@ -17,7 +17,15 @@ enum gameState {
 }
 
 class StoryViewController: UIViewController{
-
+    //variables for game flow
+    
+    var questions = [CountryQuestion]()
+    
+    var actualQuestion:Int = 0
+    
+    var leftLives:Int = 0
+    
+    // end variables for game flow
     @IBOutlet weak var crosshair: UIView!
     @IBOutlet var sceneView: ARSCNView!
     
@@ -83,11 +91,13 @@ class StoryViewController: UIViewController{
         backToMap.isHidden = true
         foodInformation.isHidden = true
         questionPanel.isHidden = true
+        startGame.isHidden = true
         
         //informationView.isHidden = true
         
         loadSceneModels()
         setupConfiguration()
+        loadJsonData()
     }
     
     func setupConfiguration(){
@@ -99,6 +109,22 @@ class StoryViewController: UIViewController{
         sceneView.delegate = self
         
         sceneView.debugOptions = .showFeaturePoints
+    }
+    
+    func loadJsonData(){
+        guard let path = Bundle.main.path(forResource: "questions", ofType: "json") else { return }
+        let url = URL(fileURLWithPath: path)
+        
+        do{
+            let data = try Data(contentsOf: url)
+            do{
+                self.questions = try JSONDecoder().decode([CountryQuestion].self, from: data)
+            }catch{
+                print(error)
+            }
+        }catch{
+            //error parse json
+        }
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -165,6 +191,7 @@ class StoryViewController: UIViewController{
     @IBAction func startGame(_ sender: UIButton) {
         if gameState != .onGame{
             gameState = .onGame
+            self.leftLives = 3
             foodInformation.isHidden = true
             countryName.isHidden = true
             foodInformation.isHidden = true
@@ -176,6 +203,8 @@ class StoryViewController: UIViewController{
             
             startGame.backgroundColor = UIColor.red.withAlphaComponent(0.5)
             //logic of game
+            actualQuestion = Int.random(in: 0..<self.questions.count)
+            questionTitle.text = questions[actualQuestion].question
         }else{
             gameState = .viewingStory
             questionPanel.isHidden = true
@@ -183,6 +212,18 @@ class StoryViewController: UIViewController{
             
             startGame.backgroundColor = backToMap.backgroundColor
         }
+    }
+    
+    @IBAction func selectAnswer(_ sender: UIButton) {
+        guard let hit = self.sceneView.hitTest(self.viewCenter, options: nil).first else { return }
+        guard let nodeName = hit.node.name else { return }
+        if cleanCountryName(nodeName) == questions[actualQuestion].answer{
+            print("Respuesta correcta")
+        }else{
+            self.leftLives -= 1
+        }
+        self.actualQuestion = Int.random(in: 0..<self.questions.count)
+        self.questionTitle.text = questions[actualQuestion].question
     }
     
     @IBAction func showFood(_ sender: Any) {
@@ -321,6 +362,7 @@ extension StoryViewController: ARSCNViewDelegate {
                     self.countryNameLabel.text = countryName
                     
                     self.countryName.isHidden = false
+                    self.startGame.isHidden = false
                     self.showFood.isHidden = false
                     
                     
@@ -355,6 +397,31 @@ extension StoryViewController: ARSCNViewDelegate {
                     self.foodInformation.isHidden = true
                     self.crosshair.backgroundColor = UIColor.lightGray
                     
+                }
+                
+            case .onGame:
+                if self.leftLives > 0{
+                    if let hit = self.sceneView.hitTest(self.viewCenter, options: nil).first{
+                        guard let nodeName = hit.node.name else { return }
+                        
+                        self.crosshair.backgroundColor = UIColor.green.withAlphaComponent(0.8)
+                        
+                        self.countryNameLabel.text = self.cleanCountryName(nodeName)
+                        
+                        
+                        
+                        self.countryName.isHidden = false
+                        
+                    }else{
+                        self.countryName.isHidden = true
+                        self.crosshair.backgroundColor = .lightGray
+                    }
+                }else{
+                    self.gameState = .viewingStory
+                    self.questionPanel.isHidden = true
+                    self.gameStateButton.setTitle("Juego", for: .normal)
+                    
+                    self.startGame.backgroundColor = self.backToMap.backgroundColor
                 }
                 
             default:

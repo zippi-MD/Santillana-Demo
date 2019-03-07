@@ -153,6 +153,9 @@
                                                 <state key="normal" title="Seleccionar">
                                                     <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
                                                 </state>
+                                                <connections>
+                                                    <action selector="selectAnswer:" destination="EK4-jC-pnq" eventType="touchUpInside" id="S2B-tu-JJ0"/>
+                                                </connections>
                                             </button>
                                         </subviews>
                                         <color key="backgroundColor" red="0.65216381940000001" green="0.97116909900000004" blue="0.66610883730000003" alpha="0.53724315069999995" colorSpace="custom" customColorSpace="displayP3"/>
