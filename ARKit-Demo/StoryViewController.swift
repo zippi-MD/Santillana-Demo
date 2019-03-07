@@ -36,6 +36,10 @@ class StoryViewController: UIViewController{
     
     @IBOutlet weak var backToMap: UIView!
     
+    @IBOutlet weak var scorePanel: UIView!
+    
+    @IBOutlet weak var scoreLabel: UILabel!
+    
     @IBOutlet weak var foodInformation: UIView!
     
     @IBOutlet weak var foodImage: UIImageView!
@@ -85,8 +89,11 @@ class StoryViewController: UIViewController{
         foodInformation.layer.cornerRadius = 10
         questionPanel.layer.cornerRadius = 10
         startGame.layer.cornerRadius = 10
+        scorePanel.layer.cornerRadius = 10
+        scorePanel.backgroundColor = showFood.backgroundColor
         
         countryName.isHidden = true
+        scorePanel.isHidden = true
         showFood.isHidden = true
         backToMap.isHidden = true
         foodInformation.isHidden = true
@@ -198,6 +205,7 @@ class StoryViewController: UIViewController{
             backToMap.isHidden = true
             
             questionPanel.isHidden = false
+            scorePanel.isHidden = false
             
             gameStateButton.setTitle("Abandonar", for: .normal)
             
@@ -408,7 +416,7 @@ extension StoryViewController: ARSCNViewDelegate {
                         
                         self.countryNameLabel.text = self.cleanCountryName(nodeName)
                         
-                        
+                        self.scoreLabel.text = String(self.leftLives)
                         
                         self.countryName.isHidden = false
                         
@@ -417,8 +425,15 @@ extension StoryViewController: ARSCNViewDelegate {
                         self.crosshair.backgroundColor = .lightGray
                     }
                 }else{
+                    //alert end game
+                    let alert = UIAlertController(title: "Fin del juego", message: "Se han acabado todas tus vidas", preferredStyle: .alert)
+                    let backAction = UIAlertAction(title: "Regresar al principio", style: .destructive, handler: nil)
+                    alert.addAction(backAction)
+                    self.present(alert, animated: true, completion: nil)
+                    //
                     self.gameState = .viewingStory
                     self.questionPanel.isHidden = true
+                    self.scorePanel.isHidden = true
                     self.gameStateButton.setTitle("Juego", for: .normal)
                     
                     self.startGame.backgroundColor = self.backToMap.backgroundColor
