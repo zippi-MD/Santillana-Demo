@@ -21,7 +21,7 @@ class StoryViewController: UIViewController{
     
     var questions = [CountryQuestion]()
     
-    var actualQuestion:Int = 0
+    var actualQuestion: CountryQuestion!
     
     var leftLives:Int = 0
     
@@ -47,9 +47,9 @@ class StoryViewController: UIViewController{
     
     @IBOutlet weak var foodDescription: UILabel!
     
+    @IBOutlet weak var selectCountry: UIView!
     @IBOutlet weak var questionPanel: UIView!
     @IBOutlet weak var questionTitle: UILabel!
-    @IBOutlet weak var questionBody: UILabel!
     
     @IBOutlet weak var startGame: UIView!
     
@@ -90,7 +90,7 @@ class StoryViewController: UIViewController{
         questionPanel.layer.cornerRadius = 10
         startGame.layer.cornerRadius = 10
         scorePanel.layer.cornerRadius = 10
-        scorePanel.backgroundColor = showFood.backgroundColor
+        selectCountry.layer.cornerRadius = 10
         
         countryName.isHidden = true
         scorePanel.isHidden = true
@@ -118,7 +118,9 @@ class StoryViewController: UIViewController{
         sceneView.debugOptions = .showFeaturePoints
     }
     
+    //Creo que queda mejor poner loadQuestions
     func loadJsonData(){
+        //Aquí deberíamos de poner un un Forced Unwrap, porque si no existe el archivo no tiene sentido que la aplicación cargue
         guard let path = Bundle.main.path(forResource: "questions", ofType: "json") else { return }
         let url = URL(fileURLWithPath: path)
         
@@ -211,11 +213,13 @@ class StoryViewController: UIViewController{
             
             startGame.backgroundColor = UIColor.red.withAlphaComponent(0.5)
             //logic of game
-            actualQuestion = Int.random(in: 0..<self.questions.count)
-            questionTitle.text = questions[actualQuestion].question
+            
+            actualQuestion = self.questions.randomElement()!
+            questionTitle.text = actualQuestion.question
         }else{
             gameState = .viewingStory
             questionPanel.isHidden = true
+            scorePanel.isHidden = true
             gameStateButton.setTitle("Juego", for: .normal)
             
             startGame.backgroundColor = backToMap.backgroundColor
@@ -223,15 +227,22 @@ class StoryViewController: UIViewController{
     }
     
     @IBAction func selectAnswer(_ sender: UIButton) {
-        guard let hit = self.sceneView.hitTest(self.viewCenter, options: nil).first else { return }
+        guard let hit = self.sceneView.hitTest(self.viewCenter, options: nil).first else {
+            let alert = UIAlertController(title: nil, message: "Porfavor apunta hacia un país.", preferredStyle: .alert)
+            let action = UIAlertAction(title: "Ok", style: .default)
+            alert.addAction(action)
+            present(alert, animated: true)
+            return
+            
+        }
         guard let nodeName = hit.node.name else { return }
-        if cleanCountryName(nodeName) == questions[actualQuestion].answer{
+        if cleanCountryName(nodeName) == actualQuestion.answer{
             print("Respuesta correcta")
         }else{
             self.leftLives -= 1
         }
-        self.actualQuestion = Int.random(in: 0..<self.questions.count)
-        self.questionTitle.text = questions[actualQuestion].question
+        self.actualQuestion = self.questions.randomElement()!
+        self.questionTitle.text = actualQuestion.question
     }
     
     @IBAction func showFood(_ sender: Any) {
@@ -427,7 +438,7 @@ extension StoryViewController: ARSCNViewDelegate {
                 }else{
                     //alert end game
                     let alert = UIAlertController(title: "Fin del juego", message: "Se han acabado todas tus vidas", preferredStyle: .alert)
-                    let backAction = UIAlertAction(title: "Regresar al principio", style: .destructive, handler: nil)
+                    let backAction = UIAlertAction(title: "Ok", style: .default, handler: nil)
                     alert.addAction(backAction)
                     self.present(alert, animated: true, completion: nil)
                     //
@@ -438,9 +449,6 @@ extension StoryViewController: ARSCNViewDelegate {
                     
                     self.startGame.backgroundColor = self.backToMap.backgroundColor
                 }
-                
-            default:
-                break
                 
             }
         }
