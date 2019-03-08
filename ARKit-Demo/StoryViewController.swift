@@ -17,13 +17,16 @@ enum gameState {
 }
 
 class StoryViewController: UIViewController{
+    
+    var countriesInfo = [String: Country]()
+    
     //variables for game flow
     
     var questions = [CountryQuestion]()
     
     var actualQuestion: CountryQuestion!
     
-    var leftLives:Int = 0
+    var leftLives: Int = 0
     
     // end variables for game flow
     @IBOutlet weak var crosshair: UIView!
@@ -104,7 +107,8 @@ class StoryViewController: UIViewController{
         
         loadSceneModels()
         setupConfiguration()
-        loadJsonData()
+        loadQuestions()
+        loadCountries()
     }
     
     func setupConfiguration(){
@@ -119,21 +123,31 @@ class StoryViewController: UIViewController{
     }
     
     //Creo que queda mejor poner loadQuestions
-    func loadJsonData(){
+    func loadQuestions(){
         //Aquí deberíamos de poner un un Forced Unwrap, porque si no existe el archivo no tiene sentido que la aplicación cargue
-        guard let path = Bundle.main.path(forResource: "questions", ofType: "json") else { return }
+        let path = Bundle.main.path(forResource: "questions", ofType: "json")!
         let url = URL(fileURLWithPath: path)
         
-        do{
-            let data = try Data(contentsOf: url)
-            do{
-                self.questions = try JSONDecoder().decode([CountryQuestion].self, from: data)
-            }catch{
-                print(error)
-            }
-        }catch{
-            //error parse json
+        let data = try? Data(contentsOf: url)
+        
+        questions = try! JSONDecoder().decode([CountryQuestion].self, from: data!)
+        
+    }
+    
+    //MARK: loadCountries
+    
+    func loadCountries(){
+        let path = Bundle.main.path(forResource: "Countries", ofType: "json")!
+        let url = URL(fileURLWithPath: path)
+        
+        let data = try? Data(contentsOf: url)
+        let countriesData = try! JSONDecoder().decode([Country].self, from: data!)
+        
+        for country in countriesData {
+            countriesInfo[country.id] = country
         }
+        
+        print(countriesInfo)
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -169,6 +183,7 @@ class StoryViewController: UIViewController{
             childNode.rotation = SCNVector4(0, 0, 0, 90)
             countries.append(childNode)
         }
+        
         
     }
     
@@ -375,7 +390,7 @@ extension StoryViewController: ARSCNViewDelegate {
                     
                     self.selectedContry = nodeName
                     
-                    let countryName = self.cleanCountryName(nodeName)
+                    let countryName = self.countriesInfo[nodeName]?.name ?? "Otro país"
                     
                     self.crosshair.backgroundColor = UIColor.green.withAlphaComponent(0.8)
                     self.countryNameLabel.text = countryName
