@@ -34,6 +34,7 @@ class StoryViewController: UIViewController{
     
     @IBOutlet weak var countryName: UIView!
     @IBOutlet weak var countryNameLabel: UILabel!
+    @IBOutlet weak var countryImage: UIImageView!
     
     @IBOutlet weak var showFood: UIView!
     
@@ -64,6 +65,8 @@ class StoryViewController: UIViewController{
     
     var storyAnchorExtent: simd_float3? = nil
     
+    var storyAnchorCenter: simd_float3? = nil
+    
     var debugPlanes = [SCNNode]()
     
     var countries = [SCNNode]()
@@ -73,6 +76,8 @@ class StoryViewController: UIViewController{
     var continent = SCNNode()
     
     var selectedContry: String?
+    var selectedCountryHitPosition: SCNVector3?
+    var selectedCountryOriginalPosition: SCNVector3?
     
     
     var viewCenter: CGPoint {
@@ -120,6 +125,7 @@ class StoryViewController: UIViewController{
         sceneView.delegate = self
         
         sceneView.debugOptions = .showFeaturePoints
+        sceneView.showsStatistics = true
     }
     
     //Creo que queda mejor poner loadQuestions
@@ -147,7 +153,6 @@ class StoryViewController: UIViewController{
             countriesInfo[country.id] = country
         }
         
-        print(countriesInfo)
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -157,9 +162,10 @@ class StoryViewController: UIViewController{
                 let hittedAnchor = hit.anchor as? ARPlaneAnchor
                 
                 storyAnchorExtent = hittedAnchor?.extent
+                storyAnchorCenter = hittedAnchor?.center
                 
                 sceneView.session.add(anchor: ARAnchor.init(transform: hit.worldTransform))
-                sceneView.debugOptions = []
+                sceneView.debugOptions = [.showBoundingBoxes]
                 
                 let configuration = ARWorldTrackingConfiguration()
                 configuration.planeDetection = []
@@ -196,18 +202,23 @@ class StoryViewController: UIViewController{
     
     
     @IBAction func backToMap(_ sender: UIButton) {
+        
         for country in continent.childNodes{
-            country.isHidden = false
-            if country.childNodes.count > 0 {
-                for child in country.childNodes {
-                    child.removeFromParentNode()
-                }
+            SCNTransaction.animationDuration = 0.5
+            country.opacity = 1
+            
+            for food in country.childNodes {
+                food.removeFromParentNode()
+            }
+            
+            if country.name == selectedContry!{
+                country.position = selectedCountryOriginalPosition!
             }
         }
         gameState = .viewingStory
         
         startGame.isHidden = false
-        
+        foodInformation.isHidden = true
         backToMap.isHidden = true
     }
     
@@ -272,34 +283,73 @@ class StoryViewController: UIViewController{
         
         startGame.isHidden = true
         
-        var countryPosition = SCNVector3(x: 0, y: 0, z: 0)
-        
         guard let countryName = selectedContry else { return }
+        
         
         for country in continent.childNodes {
             if country.name != countryName {
-                country.isHidden = true
+                SCNTransaction.animationDuration = 0.5
+                country.opacity = 0
             }
             else {
-                countryPosition = country.worldPosition
-                print(country.position)
-                print(country.worldPosition)
-                print(country.worldOrientation)
+                
+                selectedCountryOriginalPosition = country.position
+                
+                var foodPosition = SCNVector3(selectedCountryHitPosition!.x - (country.boundingBox.max.z)/2, selectedCountryHitPosition!.y, selectedCountryHitPosition!.z - (country.boundingBox.max.x)/2)
+
                 //make a fruits
-                let someFruit = SCNNode(geometry: SCNSphere(radius: 0.03))
-                someFruit.geometry?.firstMaterial?.diffuse.contents = UIColor.red
-                someFruit.name = "Food-Manzana-manzana-Fruto del manzano, comestible, de forma redondeada y algo hundida por los extremos, piel fina, de color verde, amarillo o rojo, carne blanca y jugosa, de sabor dulce o ácido, y semillas en forma de pepitas encerradas en una cápsula de cinco divisiones."
-                someFruit.position = SCNVector3(countryPosition.x - 3, countryPosition.y, countryPosition.z - 10)
+                let apple = SCNNode(geometry: SCNSphere(radius: 0.04))
+                apple.geometry?.firstMaterial?.diffuse.contents = UIColor.red
+                apple.name = "Food-Manzana-manzana-Fruto del manzano, comestible, de forma redondeada y algo hundida por los extremos, piel fina, de color verde, amarillo o rojo, carne blanca y jugosa, de sabor dulce o ácido, y semillas en forma de pepitas encerradas en una cápsula de cinco divisiones."
                 
-                let otherFruit = SCNNode(geometry: SCNSphere(radius: 0.03))
-                otherFruit.geometry?.firstMaterial?.diffuse.contents = UIColor.orange
-                otherFruit.name = "Food-Naranja-naranja-Fruto del naranjo, comestible, de forma redonda, cáscara gruesa y rugosa y pulpa dividida en gajos, agridulce y muy jugosa."
-                otherFruit.position = SCNVector3(countryPosition.x - 3, countryPosition.y, countryPosition.z - 11)
                 
-                country.addChildNode(otherFruit)
-                country.addChildNode(someFruit)
-                otherFruit.scale = SCNVector3(10,10,10)
-                someFruit.scale = SCNVector3(10, 10, 10)
+                
+                apple.worldPosition = foodPosition
+                
+            
+                let naranja = SCNNode(geometry: SCNSphere(radius: 0.04))
+                naranja.geometry?.firstMaterial?.diffuse.contents = UIColor.orange
+                naranja.name = "Food-Naranja-naranja-Fruto del naranjo, comestible, de forma redonda, cáscara gruesa y rugosa y pulpa dividida en gajos, agridulce y muy jugosa."
+                
+                foodPosition = SCNVector3(selectedCountryHitPosition!.x + (country.boundingBox.max.z)/2, selectedCountryHitPosition!.y, selectedCountryHitPosition!.z + (country.boundingBox.max.x)/2)
+                
+                
+                naranja.worldPosition = foodPosition
+                
+                
+                let banana = SCNNode(geometry: SCNSphere(radius: 0.04))
+                banana.geometry?.firstMaterial?.diffuse.contents = UIColor.yellow
+                banana.name = "Food-Platano-platano-Fruto del platanero, comestible, de forma alargada y algo curvada, pulpa de color blanco y piel lisa de color amarillo que se desprende con facilidad."
+                
+                foodPosition = SCNVector3(selectedCountryHitPosition!.x - (country.boundingBox.max.z)/2, selectedCountryHitPosition!.y, selectedCountryHitPosition!.z + (country.boundingBox.max.x)/2)
+                
+                
+                banana.worldPosition = foodPosition
+                
+                
+                let pear = SCNNode(geometry: SCNSphere(radius: 0.04))
+                pear.geometry?.firstMaterial?.diffuse.contents = UIColor.green
+                pear.name = "Food-Pera-pera-Fruto del peral, comestible, de color verde, amarillo o encarnado, ancho por la parte de abajo y delgado por la de arriba (donde tiene el pedúnculo), de piel fina y pulpa blanca, muy jugosa, sabor dulce y, en el centro, unas semillas pequeñas de color negro."
+                
+                foodPosition = SCNVector3(selectedCountryHitPosition!.x + (country.boundingBox.max.z)/2, selectedCountryHitPosition!.y, selectedCountryHitPosition!.z - (country.boundingBox.max.x)/2)
+                
+                
+                pear.worldPosition = foodPosition
+                
+                
+                
+
+                country.addChildNode(naranja)
+                naranja.scale = SCNVector3(10, 10 , 10)
+                
+                country.addChildNode(apple)
+                apple.scale = SCNVector3(10, 10, 10)
+                
+                country.addChildNode(banana)
+                banana.scale = SCNVector3(10, 10, 10)
+                
+                country.addChildNode(pear)
+                pear.scale = SCNVector3(10, 10, 10)
             }
             
         }
@@ -350,8 +400,9 @@ extension StoryViewController: ARSCNViewDelegate {
                     country.position = SCNVector3(0.39, 0, 0.7)
                     self.continent.addChildNode(country)
                 }
+                self.continent.scale = SCNVector3(x: 1.0, y: 0.3, z: 1.0)
                 
-                self.continent.scale = SCNVector3(x: planeExtention.z, y: 0.3, z: planeExtention.z)
+                self.continent.position = SCNVector3(planeExtention.z/2, 0, planeExtention.z/2)
                 
                 node.addChildNode(self.continent)
             
@@ -388,14 +439,32 @@ extension StoryViewController: ARSCNViewDelegate {
                     
                     guard let nodeName = hit.node.name else {return}
                     
+                    self.selectedCountryHitPosition = hit.localCoordinates
+                    
                     self.selectedContry = nodeName
                     
-                    let countryName = self.countriesInfo[nodeName]?.name ?? "Otro país"
+                    self.countryImage.image = nil
+                    
+                    
+                    if let imageName = self.countriesInfo[nodeName]?.flag.uppercased() {
+                        if let image = UIImage(named: imageName){
+                            self.countryImage.image = image
+                        }
+                    }
+                
+
+                    
+                    if !nodeName.contains("Food"){
+                        let countryName = self.countriesInfo[nodeName]?.name ?? "Otro país"
+                        self.countryNameLabel.text = countryName
+                    }
+                    
                     
                     self.crosshair.backgroundColor = UIColor.green.withAlphaComponent(0.8)
-                    self.countryNameLabel.text = countryName
+                    
                     
                     self.countryName.isHidden = false
+                    self.countryImage.isHidden = false
                     self.startGame.isHidden = false
                     self.showFood.isHidden = false
                     
@@ -406,6 +475,7 @@ extension StoryViewController: ARSCNViewDelegate {
                     self.selectedContry = nil
                     
                     self.countryName.isHidden = true
+                    self.countryImage.isHidden = true
                     self.showFood.isHidden = true
                     self.crosshair.backgroundColor = UIColor.lightGray
                 }
@@ -423,12 +493,14 @@ extension StoryViewController: ARSCNViewDelegate {
                     self.foodDescription.text = String(data[3])
                     
                     self.foodInformation.isHidden = false
+                    self.backToMap.isHidden = true
                     
                     self.crosshair.backgroundColor = UIColor.green.withAlphaComponent(0.8)
                 }
                 else {
                     
                     self.foodInformation.isHidden = true
+                    self.backToMap.isHidden = false
                     self.crosshair.backgroundColor = UIColor.lightGray
                     
                 }
@@ -440,7 +512,15 @@ extension StoryViewController: ARSCNViewDelegate {
                         
                         self.crosshair.backgroundColor = UIColor.green.withAlphaComponent(0.8)
                         
-                        self.countryNameLabel.text = self.cleanCountryName(nodeName)
+                        self.countryNameLabel.text = self.countriesInfo[nodeName]?.name
+                        
+                        //hay que hacer una función porque se usa en varias partes
+                        self.countryImage.image = nil
+                        if let imageName = self.countriesInfo[nodeName]?.flag.uppercased() {
+                            if let image = UIImage(named: imageName){
+                                self.countryImage.image = image
+                            }
+                        }
                         
                         self.scoreLabel.text = String(self.leftLives)
                         

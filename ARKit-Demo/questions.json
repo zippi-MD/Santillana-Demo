@@ -1,14 +1,10 @@
 [
     {
-        "question":"¿País que mas tacos come?",
+        "question":"¿País que come más tacos?",
         "answer":"Mexico"
     },
     {
-        "question":"¿País de donde es originario el maíz?",
-        "answer":"Mexico"
-    },
-    {
-        "question":"¿País de donde es originario el cacao?",
+        "question":"¿De qué país es originario el maíz?",
         "answer":"Mexico"
     }
 ]

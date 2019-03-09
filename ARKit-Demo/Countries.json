@@ -62,7 +62,7 @@
     {
             "id": "North_America_World_Map_United_States_1_US",
             "name": "Estados Unidos",
-            "flag": "Estados Unidos",
+            "flag": "USA",
             "color": "green"
     },
     {
@@ -74,7 +74,7 @@
     {
             "id": "Mexico_North_America_World_Map",
             "name": "México",
-            "flag": "México",
+            "flag": "Mexico",
             "color": "green"
     },
     {
@@ -121,8 +121,8 @@
     },
     {
             "id": "World_Map_South_America_Venezuela1",
-            "name": "Veneszuela",
-            "flag": "Venezuela1",
+            "name": "Venezuela",
+            "flag": "Venezuela",
             "color": "green"
     },
     {
@@ -170,7 +170,7 @@
     {
             "id": "North_America_World_Map_US_United_States",
             "name": "Estados Unidos",
-            "flag": "Estados Unidos",
+            "flag": "usa",
             "color": "green"
     },
     {
