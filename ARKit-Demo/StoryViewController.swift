@@ -60,6 +60,9 @@ class StoryViewController: UIViewController{
 
     @IBOutlet weak var gameStateButton: UIButton!
     
+    @IBOutlet weak var questionToastView: UIView!
+    @IBOutlet weak var questionToastLabel: UILabel!
+    @IBOutlet weak var questionToastImage: UIImageView!
     
     var gameState: gameState = .selectingPlane
     
@@ -99,13 +102,16 @@ class StoryViewController: UIViewController{
         startGame.layer.cornerRadius = 10
         scorePanel.layer.cornerRadius = 10
         selectCountry.layer.cornerRadius = 10
+        questionToastView.layer.cornerRadius = 10
         
         countryName.isHidden = true
+        countryImage.isHidden = true
         scorePanel.isHidden = true
         showFood.isHidden = true
         backToMap.isHidden = true
         foodInformation.isHidden = true
         questionPanel.isHidden = true
+        questionToastView.isHidden = true
         startGame.isHidden = true
         
         //informationView.isHidden = true
@@ -125,7 +131,7 @@ class StoryViewController: UIViewController{
         sceneView.delegate = self
         
         sceneView.debugOptions = .showFeaturePoints
-        sceneView.showsStatistics = true
+        //sceneView.showsStatistics = true
     }
     
     //Creo que queda mejor poner loadQuestions
@@ -165,7 +171,7 @@ class StoryViewController: UIViewController{
                 storyAnchorCenter = hittedAnchor?.center
                 
                 sceneView.session.add(anchor: ARAnchor.init(transform: hit.worldTransform))
-                sceneView.debugOptions = [.showBoundingBoxes]
+                sceneView.debugOptions = []
                 
                 let configuration = ARWorldTrackingConfiguration()
                 configuration.planeDetection = []
@@ -227,13 +233,16 @@ class StoryViewController: UIViewController{
         if gameState != .onGame{
             gameState = .onGame
             self.leftLives = 3
+            
             foodInformation.isHidden = true
             countryName.isHidden = true
+            countryImage.isHidden = true
             foodInformation.isHidden = true
             backToMap.isHidden = true
             
             questionPanel.isHidden = false
             scorePanel.isHidden = false
+            scoreLabel.text = "\(self.leftLives)"
             
             gameStateButton.setTitle("Abandonar", for: .normal)
             
@@ -254,7 +263,7 @@ class StoryViewController: UIViewController{
     
     @IBAction func selectAnswer(_ sender: UIButton) {
         guard let hit = self.sceneView.hitTest(self.viewCenter, options: nil).first else {
-            let alert = UIAlertController(title: nil, message: "Porfavor apunta hacia un país.", preferredStyle: .alert)
+            let alert = UIAlertController(title: nil, message: "Por favor apunta hacia un país.", preferredStyle: .alert)
             let action = UIAlertAction(title: "Ok", style: .default)
             alert.addAction(action)
             present(alert, animated: true)
@@ -262,13 +271,67 @@ class StoryViewController: UIViewController{
             
         }
         guard let nodeName = hit.node.name else { return }
+        
+        questionToastView.isHidden = false
+        questionToastView.center.x = self.view.center.x
+        
         if cleanCountryName(nodeName) == actualQuestion.answer{
             print("Respuesta correcta")
+            questionToastImage.image = UIImage(named: "right_answer")
+            questionToastLabel.text = "Correcto"
+            
+            UIView.animateKeyframes(withDuration: 2.0, delay: 0, options: [.calculationModeCubic], animations: {
+                
+                UIView.addKeyframe(withRelativeStartTime: 0, relativeDuration: 2.0/5.0, animations: {
+                    self.questionToastView.layer.opacity = 1.0
+                    self.questionToastView.frame.origin.y -= 300
+                    self.questionPanel.layer.opacity = 0.0
+                })
+                
+                UIView.addKeyframe(withRelativeStartTime: 3.0/5.0, relativeDuration: 2.0/5.0, animations: {
+                    self.questionToastView.frame.origin.y += 300
+                    self.questionToastView.layer.opacity = 0.0
+                })
+                
+                
+            }) { _ in
+                
+                self.actualQuestion = self.questions.randomElement()!
+                self.questionTitle.text = self.actualQuestion.question
+            
+                UIView.animate(withDuration: 0.2, animations: {
+                    self.questionPanel.layer.opacity = 1.0
+                })
+                
+                
+            }
+            
         }else{
             self.leftLives -= 1
+            
+            questionToastImage.image = UIImage(named: "wrong_answer")
+            questionToastLabel.text = "Incorrecto"
+            
+            UIView.animateKeyframes(withDuration: 1.6, delay: 0, options: [.calculationModeCubic], animations: {
+                
+                UIView.addKeyframe(withRelativeStartTime: 0, relativeDuration: 1.0/5.0, animations: {
+                    self.questionToastView.layer.opacity = 1.0
+                    self.questionToastView.frame.origin.y -= 300
+                })
+                
+                UIView.addKeyframe(withRelativeStartTime: 3.0/5.0, relativeDuration: 2.0/5.0, animations: {
+                    self.questionToastView.frame.origin.y += 300
+                    self.questionToastView.layer.opacity = 0.0
+                })
+                
+                
+            }) { _ in
+                
+                print("done wrong answer animation")
+                
+            }
         }
-        self.actualQuestion = self.questions.randomElement()!
-        self.questionTitle.text = actualQuestion.question
+        
     }
     
     @IBAction func showFood(_ sender: Any) {
@@ -498,7 +561,7 @@ extension StoryViewController: ARSCNViewDelegate {
                     self.crosshair.backgroundColor = UIColor.green.withAlphaComponent(0.8)
                 }
                 else {
-                    
+                    self.countryImage.isHidden = true
                     self.foodInformation.isHidden = true
                     self.backToMap.isHidden = false
                     self.crosshair.backgroundColor = UIColor.lightGray
@@ -523,11 +586,12 @@ extension StoryViewController: ARSCNViewDelegate {
                         }
                         
                         self.scoreLabel.text = String(self.leftLives)
-                        
+                        self.countryImage.isHidden = false
                         self.countryName.isHidden = false
                         
                     }else{
                         self.countryName.isHidden = true
+                        self.countryImage.isHidden = true
                         self.crosshair.backgroundColor = .lightGray
                     }
                 }else{
