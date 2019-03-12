@@ -76,7 +76,7 @@ class StoryViewController: UIViewController{
     
     var countryColors: [UIColor] = [.red, .blue, .green, .cyan, .gray]
     
-    var continent = SCNNode()
+    var world = SCNNode()
     
     var selectedContry: String?
     var selectedCountryHitPosition: SCNVector3?
@@ -187,7 +187,7 @@ class StoryViewController: UIViewController{
     }
     
     func loadSceneModels(){
-        let storyScene = SCNScene(named: "StoryAssets.scnassets/Models/America.scn")!
+        let storyScene = SCNScene(named: "StoryAssets.scnassets/Models/world.scn")!
         
         for childNode in storyScene.rootNode.childNodes {
             childNode.geometry?.firstMaterial = SCNMaterial()
@@ -209,7 +209,7 @@ class StoryViewController: UIViewController{
     
     @IBAction func backToMap(_ sender: UIButton) {
         
-        for country in continent.childNodes{
+        for country in world.childNodes{
             SCNTransaction.animationDuration = 0.5
             country.opacity = 1
             
@@ -349,7 +349,7 @@ class StoryViewController: UIViewController{
         guard let countryName = selectedContry else { return }
         
         
-        for country in continent.childNodes {
+        for country in world.childNodes {
             if country.name != countryName {
                 SCNTransaction.animationDuration = 0.5
                 country.opacity = 0
@@ -461,13 +461,13 @@ extension StoryViewController: ARSCNViewDelegate {
                 for country in self.countries {
                     country.scale = SCNVector3(0.1, 0.1, 0.1)
                     country.position = SCNVector3(0.39, 0, 0.7)
-                    self.continent.addChildNode(country)
+                    self.world.addChildNode(country)
                 }
-                self.continent.scale = SCNVector3(x: 1.0, y: 0.3, z: 1.0)
+                self.world.scale = SCNVector3(x: 1.0, y: 0.3, z: 1.0)
                 
-                self.continent.position = SCNVector3(planeExtention.z/2, 0, planeExtention.z/2)
+                self.world.position = SCNVector3(planeExtention.z/2, 0, planeExtention.z/2)
                 
-                node.addChildNode(self.continent)
+                node.addChildNode(self.world)
             
                 
             }
