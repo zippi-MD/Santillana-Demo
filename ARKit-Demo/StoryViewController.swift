@@ -190,6 +190,7 @@ class StoryViewController: UIViewController{
         let storyScene = SCNScene(named: "StoryAssets.scnassets/Models/world.scn")!
         
         for childNode in storyScene.rootNode.childNodes {
+            print("\"\(childNode.name!)\",")
             childNode.geometry?.firstMaterial = SCNMaterial()
             childNode.geometry?.firstMaterial?.diffuse.contents = countryColors.randomElement()!.withAlphaComponent(0.8)
             childNode.rotation = SCNVector4(0, 0, 0, 90)
@@ -423,7 +424,7 @@ class StoryViewController: UIViewController{
     
     
     func cleanCountryName(_ name: String) -> String {
-        let undesired = ["World", "Map", "South", "North", "America"]
+        let undesired = ["World", "Map", "South", "North", "America", "Asia", "Europe", "South", "Africa"]
         
         var cleanName = name
         
