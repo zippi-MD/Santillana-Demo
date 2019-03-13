@@ -7,8 +7,8 @@
     },
     {
         "id": "World_Map_Antarctica_Antarctica_ice_shelf1",
-        "name": "Antarctica Antarctica ice shelf1",
-        "flag": "Antarctica Antarctica ice shelf1",
+        "name": "Antártica",
+        "flag": "Antarctica",
         "color": "green"
     },
     {
@@ -337,14 +337,14 @@
     },
     {
         "id": "Mexico_North_America_World_Map",
-        "name": "Mexico",
+        "name": "México",
         "flag": "Mexico",
         "color": "green"
     },
     {
         "id": "World_Map_Asia_Russia",
-        "name": "Russia",
-        "flag": "Russia",
+        "name": "Rusia",
+        "flag": "Rusia",
         "color": "green"
     },
     {
@@ -367,14 +367,14 @@
     },
     {
         "id": "World_Map_South_America_Venezuela1",
-        "name": "Venezuela1",
-        "flag": "Venezuela1",
+        "name": "Venezuela",
+        "flag": "Venezuela",
         "color": "green"
     },
     {
         "id": "North_America_World_Map_United_States_1_US",
-        "name": "United States 1 US",
-        "flag": "United States 1 US",
+        "name": "Estados Unidos",
+        "flag": "USA",
         "color": "green"
     },
     {
@@ -415,8 +415,8 @@
     },
     {
         "id": "World_Map_Antarctica_Antarctica_ice_shelf4",
-        "name": "Antarctica Antarctica ice shelf4",
-        "flag": "Antarctica Antarctica ice shelf4",
+        "name": "Antártica",
+        "flag": "Antarctica",
         "color": "green"
     },
     {
@@ -445,14 +445,14 @@
     },
     {
         "id": "World_Map_Oceania_New_Zealand",
-        "name": "Oceania New Zealand",
-        "flag": "Oceania New Zealand",
+        "name": "Nueva Zelanda",
+        "flag": Nueva Zelanda",
         "color": "green"
     },
     {
         "id": "World_Map_Europe_Spain_Island_Spain1",
-        "name": "Spain Island Spain1",
-        "flag": "Spain Island Spain1",
+        "name": "España",
+        "flag": "España",
         "color": "green"
     },
     {
@@ -463,8 +463,8 @@
     },
     {
         "id": "World_Map_South_America_Argentina_Argentina_Island",
-        "name": "Argentina Argentina Island",
-        "flag": "Argentina Argentina Island",
+        "name": "Argentina",
+        "flag": "Argentin",
         "color": "green"
     },
     {
@@ -475,8 +475,8 @@
     },
     {
         "id": "World_Map_Europe_Finland",
-        "name": "Finland",
-        "flag": "Finland",
+        "name": "Finlandia",
+        "flag": "Finlandia",
         "color": "green"
     },
     {
@@ -487,14 +487,14 @@
     },
     {
         "id": "World_Map_Oceania_Vanuatu",
-        "name": "Oceania Vanuatu",
-        "flag": "Oceania Vanuatu",
+        "name": "Vanuatu",
+        "flag": "Vanuatu",
         "color": "green"
     },
     {
         "id": "World_Map_Europe_United_Kingdom",
-        "name": "United Kingdom",
-        "flag": "United Kingdom",
+        "name": "Reino Unido",
+        "flag": "Reino Unido",
         "color": "green"
     },
     {
@@ -511,8 +511,8 @@
     },
     {
         "id": "World_Map_Asia_Philippines",
-        "name": "Philippines",
-        "flag": "Philippines",
+        "name": "Filipinas",
+        "flag": "Filipinas",
         "color": "green"
     },
     {
@@ -541,8 +541,8 @@
     },
     {
         "id": "World_Map_Antarctica_Antarctica_ice_shelf2",
-        "name": "Antarctica Antarctica ice shelf2",
-        "flag": "Antarctica Antarctica ice shelf2",
+        "name": "Antártica",
+        "flag": "Antarctica",
         "color": "green"
     },
     {
@@ -619,8 +619,8 @@
     },
     {
         "id": "World_Map_Antarctica_Antarctica_ice_shelf3",
-        "name": "Antarctica Antarctica ice shelf3",
-        "flag": "Antarctica Antarctica ice shelf3",
+        "name": "Antártica",
+        "flag": "Antarctica",
         "color": "green"
     },
     {
@@ -829,8 +829,8 @@
     },
     {
         "id": "World_Map_Antarctica_ice_shelf8_Antarctica",
-        "name": "Antarctica ice shelf8 Antarctica",
-        "flag": "Antarctica ice shelf8 Antarctica",
+        "name": "Antártica",
+        "flag": "Antarctica",
         "color": "green"
     },
     {
@@ -847,14 +847,14 @@
     },
     {
         "id": "World_Map_Europe_Bosnia_and_Herzegovina",
-        "name": "Bosnia and Herzegovina",
-        "flag": "Bosnia and Herzegovina",
+        "name": "Bosnia y Herzegovina",
+        "flag": "Bosnia y Herzegovina",
         "color": "green"
     },
     {
         "id": "World_Map_South_America_Argentina_Argentina",
-        "name": "Argentina Argentina",
-        "flag": "Argentina Argentina",
+        "name": "Argentina",
+        "flag": "Argentina",
         "color": "green"
     },
     {
@@ -865,8 +865,8 @@
     },
     {
         "id": "North_America_World_Map_US_United_States",
-        "name": "US United States",
-        "flag": "US United States",
+        "name": "Estados Unidos",
+        "flag": "USA",
         "color": "green"
     },
     {
@@ -877,8 +877,8 @@
     },
     {
         "id": "World_Map_Asia_North_Korea",
-        "name": "Korea",
-        "flag": "Korea",
+        "name": "Corea",
+        "flag": "Corea",
         "color": "green"
     },
     {
@@ -937,44 +937,44 @@
     },
     {
         "id": "World_Map_Africa_Ethiopia",
-        "name": "Ethiopia",
-        "flag": "Ethiopia",
+        "name": "Etiopia",
+        "flag": "Etiopia",
         "color": "green"
     },
     {
         "id": "North_America_World_Map_Belize",
-        "name": "Belize",
-        "flag": "Belize",
+        "name": "Belice",
+        "flag": "Belice",
         "color": "green"
     },
     {
         "id": "World_Map_Antarctica_Antarctica_ice_shelf7",
-        "name": "Antarctica Antarctica ice shelf7",
-        "flag": "Antarctica Antarctica ice shelf7",
+        "name": "Antártica",
+        "flag": "Antarctica",
         "color": "green"
     },
     {
         "id": "World_Map_Europe_Poland",
-        "name": "Poland",
-        "flag": "Poland",
+        "name": "Polonia",
+        "flag": "Polonia",
         "color": "green"
     },
     {
         "id": "World_Map_Antarctica_Antarctica_ice_shelf9",
-        "name": "Antarctica Antarctica ice shelf9",
-        "flag": "Antarctica Antarctica ice shelf9",
+        "name": "Antárctica",
+        "flag": "Antarctica",
         "color": "green"
     },
     {
         "id": "World_Map_Europe_France_France",
-        "name": "France France",
-        "flag": "France France",
+        "name": "Francia",
+        "flag": "Francia",
         "color": "green"
     },
     {
         "id": "World_Map_Africa_Equatorial_Guinea",
-        "name": "Equatorial Guinea",
-        "flag": "Equatorial Guinea",
+        "name": "Guinea",
+        "flag": "Guinea",
         "color": "green"
     },
     {
@@ -997,8 +997,8 @@
     },
     {
         "id": "World_Map_Europe_Slovenia1",
-        "name": "Slovenia1",
-        "flag": "Slovenia1",
+        "name": "Slovenia",
+        "flag": "Slovenia",
         "color": "green"
     },
     {
@@ -1009,26 +1009,26 @@
     },
     {
         "id": "World_Map_Asia_Japan",
-        "name": "Japan",
-        "flag": "Japan",
+        "name": "Japón",
+        "flag": "Japon",
         "color": "green"
     },
     {
         "id": "World_Map_Europe_Spain1_Spain",
-        "name": "Spain1 Spain",
-        "flag": "Spain1 Spain",
+        "name": "España",
+        "flag": "España",
         "color": "green"
     },
     {
         "id": "World_Map_Africa_Namibia1",
-        "name": "Namibia1",
-        "flag": "Namibia1",
+        "name": "Namibia",
+        "flag": "Namibia",
         "color": "green"
     },
     {
         "id": "World_Map_Antarctica_Antarctica",
-        "name": "Antarctica Antarctica",
-        "flag": "Antarctica Antarctica",
+        "name": "Antártica",
+        "flag": "Antarctica",
         "color": "green"
     },
     {
@@ -1039,8 +1039,8 @@
     },
     {
         "id": "World_Map_Democratic_Republic_of_the_Congo_Africa",
-        "name": "Democratic Republic of the Congo",
-        "flag": "Democratic Republic of the Congo",
+        "name": "República Democrática del Congo",
+        "flag": "Congo",
         "color": "green"
     },
     {
@@ -1105,7 +1105,7 @@
     },
     {
         "id": "World_Map_South_America_French_Guiana",
-        "name": "French Guiana",
+        "name": "Guyana Francesa",
         "flag": "French Guiana",
         "color": "green"
     },
@@ -1129,19 +1129,19 @@
     },
     {
         "id": "World_Map_Oceania_Australia",
-        "name": "Oceania Australia",
-        "flag": "Oceania Australia",
+        "name": "Australia",
+        "flag": "Australia",
         "color": "green"
     },
     {
         "id": "North_America_World_Map_Panama",
-        "name": "Panama",
+        "name": "Panamá",
         "flag": "Panama",
         "color": "green"
     },
     {
         "id": "World_Map_Asia_United_Arab_Emirates",
-        "name": "United Arab Emirates",
+        "name": "Emiratos Árabes Unidos",
         "flag": "United Arab Emirates",
         "color": "green"
     },
@@ -1171,14 +1171,14 @@
     },
     {
         "id": "North_America_World_Map_The_Bahamas",
-        "name": "The Bahamas",
+        "name": "Las Bahamas",
         "flag": "The Bahamas",
         "color": "green"
     },
     {
         "id": "World_Map_Antarctica_Antarctica_ice_shelf6",
-        "name": "Antarctica Antarctica ice shelf6",
-        "flag": "Antarctica Antarctica ice shelf6",
+        "name": "Antártica",
+        "flag": "Antarctica",
         "color": "green"
     },
     {
@@ -1189,8 +1189,8 @@
     },
     {
         "id": "North_America_World_Map_US_U_S__Hawaii",
-        "name": "US U S  Hawaii",
-        "flag": "US U S  Hawaii",
+        "name": "Hawaii",
+        "flag": "USA",
         "color": "green"
     }
 ]
