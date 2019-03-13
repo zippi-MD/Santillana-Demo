@@ -460,7 +460,7 @@ extension StoryViewController: ARSCNViewDelegate {
                 
                 for country in self.countries {
                     country.scale = SCNVector3(0.1, 0.1, 0.1)
-                    country.position = SCNVector3(0.39, 0, 0.7)
+                    country.position = SCNVector3(0.39, 0, 0)
                     self.world.addChildNode(country)
                 }
                 self.world.scale = SCNVector3(x: 1.0, y: 0.3, z: 1.0)
