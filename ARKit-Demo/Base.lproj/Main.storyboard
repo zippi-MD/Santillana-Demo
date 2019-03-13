@@ -308,6 +308,7 @@
                         <outlet property="questionToastLabel" destination="k6z-zO-urN" id="cBO-cf-KHi"/>
                         <outlet property="questionToastView" destination="Mns-Dl-DW9" id="N8D-bm-rG1"/>
                         <outlet property="sceneView" destination="N0i-DE-61Q" id="LyQ-XN-3Yq"/>
+                        <outlet property="scoreHeart" destination="ow4-Sa-LZF" id="HZ3-HM-6Rc"/>
                         <outlet property="scoreLabel" destination="yEj-Zs-2aT" id="z0n-vZ-TRi"/>
                         <outlet property="scorePanel" destination="QIh-5p-rKm" id="Zed-Ho-NGv"/>
                         <outlet property="selectCountry" destination="sdU-C6-cX6" id="rdS-1f-ksu"/>

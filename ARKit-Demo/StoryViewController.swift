@@ -41,7 +41,7 @@ class StoryViewController: UIViewController{
     @IBOutlet weak var backToMap: UIView!
     
     @IBOutlet weak var scorePanel: UIView!
-    
+    @IBOutlet weak var scoreHeart: UIImageView!
     @IBOutlet weak var scoreLabel: UILabel!
     
     @IBOutlet weak var foodInformation: UIView!
@@ -74,7 +74,7 @@ class StoryViewController: UIViewController{
     
     var countries = [SCNNode]()
     
-    var countryColors: [UIColor] = [.red, .blue, .green, .cyan, .gray]
+    var countryColors: [UIColor] = UIColor.Santillana.colors
     
     var world = SCNNode()
     
@@ -87,7 +87,6 @@ class StoryViewController: UIViewController{
         let viewBounds = view.bounds
         return CGPoint(x: viewBounds.width / 2.0, y: viewBounds.height / 2.0)
     }
-    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -116,11 +115,15 @@ class StoryViewController: UIViewController{
         
         //informationView.isHidden = true
         
+
+        
         loadSceneModels()
         setupConfiguration()
         loadQuestions()
         loadCountries()
     }
+    
+
     
     func setupConfiguration(){
         
@@ -132,6 +135,8 @@ class StoryViewController: UIViewController{
         
         sceneView.debugOptions = .showFeaturePoints
         //sceneView.showsStatistics = true
+        
+        
     }
     
     //Creo que queda mejor poner loadQuestions
@@ -190,9 +195,8 @@ class StoryViewController: UIViewController{
         let storyScene = SCNScene(named: "StoryAssets.scnassets/Models/world.scn")!
         
         for childNode in storyScene.rootNode.childNodes {
-            print("\"\(childNode.name!)\",")
             childNode.geometry?.firstMaterial = SCNMaterial()
-            childNode.geometry?.firstMaterial?.diffuse.contents = countryColors.randomElement()!.withAlphaComponent(0.8)
+            childNode.geometry?.firstMaterial?.diffuse.contents = countryColors.randomElement()!
             childNode.rotation = SCNVector4(0, 0, 0, 90)
             countries.append(childNode)
         }
@@ -244,6 +248,13 @@ class StoryViewController: UIViewController{
             questionPanel.isHidden = false
             scorePanel.isHidden = false
             scoreLabel.text = "\(self.leftLives)"
+            
+            UIView.animateKeyframes(withDuration: 1.0, delay: 0, options: [.repeat, .autoreverse], animations: {
+                let jumpTransform = CGAffineTransform(translationX: 0, y: -3)
+                let transform = CGAffineTransform(scaleX: 1.1, y: 1.1)
+                let mergeTransform = transform.concatenating(jumpTransform)
+                self.scoreHeart.transform = mergeTransform
+            }, completion: nil)
             
             gameStateButton.setTitle("Abandonar", for: .normal)
             
@@ -612,6 +623,29 @@ extension StoryViewController: ARSCNViewDelegate {
                 
             }
         }
+    }
+    
+}
+
+func generateColorFromRGB(_ red: Int, _ green: Int, _ blue: Int) -> UIColor {
+    return UIColor(red: CGFloat(red)/255, green: CGFloat(green)/255, blue: CGFloat(blue)/255, alpha: 1)
+}
+
+extension UIColor{
+    struct Santillana {
+        
+        
+        static var green = generateColorFromRGB(46, 204, 113)
+        static var red = generateColorFromRGB(231, 76, 60)
+        static var blue = generateColorFromRGB(52, 152, 219)
+        static var purple = generateColorFromRGB(155, 89, 182)
+        static var yellow = generateColorFromRGB(241, 196, 15)
+        static var orange = generateColorFromRGB(230, 126, 34)
+        static var deepBlue = generateColorFromRGB(52, 73, 94)
+        
+        static var colors = [green, red, blue, purple, yellow, orange, deepBlue]
+        
+        
     }
     
 }

@@ -27,9 +27,9 @@ class MenuViewController: UIViewController {
         startView.addGestureRecognizer(tapGesture)
         
         
-        startView.layer.cornerRadius = 10
-        startView.layer.borderWidth = 3
-        startView.layer.borderColor = UIColor(red: 126/255, green: 211/255, blue: 247/255, alpha: 1.0).cgColor
+//        startView.layer.cornerRadius = 10
+//        startView.layer.borderWidth = 3
+//        startView.layer.borderColor = UIColor(red: 126/255, green: 211/255, blue: 247/255, alpha: 1.0).cgColor
         
         let titleGradient = generateGradientForView(view: titleView, colors: [UIColor(red: 236/255, green: 77/255, blue: 34/255, alpha: 1.0).cgColor, UIColor(red: 253/255, green: 185/255, blue: 19/255, alpha: 1.0).cgColor])
         
