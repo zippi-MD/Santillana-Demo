@@ -2,97 +2,97 @@
     {
         "id": "World_Map_Europe_Montenegro",
         "name": "Montenegro",
-        "flag": "Montenegro",
+        "flag": "me",
         "color": "green"
     },
     {
         "id": "World_Map_Antarctica_Antarctica_ice_shelf1",
         "name": "Antártica",
-        "flag": "Antarctica",
+        "flag": "ay",
         "color": "green"
     },
     {
         "id": "World_Map_Africa_Malawi",
         "name": "Malawi",
-        "flag": "Malawi",
+        "flag": "mw",
         "color": "green"
     },
     {
         "id": "World_Map_Asia_Uzbekistan",
         "name": "Uzbekistan",
-        "flag": "Uzbekistan",
+        "flag": "uz",
         "color": "green"
     },
     {
         "id": "World_Map_Africa_Morocco",
         "name": "Morocco",
-        "flag": "Morocco",
+        "flag": "ma",
         "color": "green"
     },
     {
         "id": "World_Map_Asia_Bahrain",
         "name": "Bahrain",
-        "flag": "Bahrain",
+        "flag": "bs",
         "color": "green"
     },
     {
         "id": "World_Map_Asia_Syria",
         "name": "Syria",
-        "flag": "Syria",
+        "flag": "sy",
         "color": "green"
     },
     {
         "id": "World_Map_Asia_India",
         "name": "India",
-        "flag": "India",
+        "flag": "in",
         "color": "green"
     },
     {
         "id": "North_America_World_Map_Jamaica",
         "name": "Jamaica",
-        "flag": "Jamaica",
+        "flag": "jm",
         "color": "green"
     },
     {
         "id": "World_Map_Asia_Bangladesh",
         "name": "Bangladesh",
-        "flag": "Bangladesh",
+        "flag": "bd",
         "color": "green"
     },
     {
         "id": "World_Map_Asia_Thailand",
         "name": "Thailand",
-        "flag": "Thailand",
+        "flag": "th",
         "color": "green"
     },
     {
         "id": "North_America_World_Map_Dominica",
         "name": "Dominica",
-        "flag": "Dominica",
+        "flag": "do",
         "color": "green"
     },
     {
         "id": "World_Map_Africa_Angola",
         "name": "Angola",
-        "flag": "Angola",
+        "flag": "ao",
         "color": "green"
     },
     {
         "id": "World_Map_Africa_Cameroon",
         "name": "Cameroon",
-        "flag": "Cameroon",
+        "flag": "cm",
         "color": "green"
     },
     {
         "id": "World_Map_Europe_Croatia1",
         "name": "Croatia1",
-        "flag": "Croatia1",
+        "flag": "hr",
         "color": "green"
     },
     {
         "id": "World_Map_South_America_Chile",
         "name": "Chile",
-        "flag": "Chile",
+        "flag": "cl",
         "color": "green"
     },
     {
@@ -104,37 +104,37 @@
     {
         "id": "World_Map_Europe_Germany",
         "name": "Germany",
-        "flag": "Germany",
+        "flag": "de",
         "color": "green"
     },
     {
         "id": "World_Map_Europe_Latvia",
         "name": "Latvia",
-        "flag": "Latvia",
+        "flag": "lv",
         "color": "green"
     },
     {
         "id": "World_Map_South_America_Peru",
         "name": "Peru",
-        "flag": "Peru",
+        "flag": "pea",
         "color": "green"
     },
     {
         "id": "North_America_World_Map_St_Ritts_and_nevis",
         "name": "St Ritts and nevis",
-        "flag": "St Ritts and nevis",
+        "flag": "kn",
         "color": "green"
     },
     {
         "id": "World_Map_Brazil1_South_America",
         "name": "Brasil",
-        "flag": "Brasil",
+        "flag": "br",
         "color": "green"
     },
     {
         "id": "World_Map_Oceania_Solomon_Islands",
         "name": "Oceania Solomon Islands",
-        "flag": "Oceania Solomon Islands",
+        "flag": "sb",
         "color": "green"
     },
     {
@@ -1010,25 +1010,25 @@
     {
         "id": "World_Map_Asia_Japan",
         "name": "Japón",
-        "flag": "Japon",
+        "flag": "jp",
         "color": "green"
     },
     {
         "id": "World_Map_Europe_Spain1_Spain",
         "name": "España",
-        "flag": "España",
+        "flag": "es",
         "color": "green"
     },
     {
         "id": "World_Map_Africa_Namibia1",
         "name": "Namibia",
-        "flag": "Namibia",
+        "flag": "na",
         "color": "green"
     },
     {
         "id": "World_Map_Antarctica_Antarctica",
         "name": "Antártica",
-        "flag": "Antarctica",
+        "flag": "aq",
         "color": "green"
     },
     {
@@ -1040,61 +1040,61 @@
     {
         "id": "World_Map_Democratic_Republic_of_the_Congo_Africa",
         "name": "República Democrática del Congo",
-        "flag": "Congo",
+        "flag": "cd",
         "color": "green"
     },
     {
         "id": "World_Map_Europe_Belgium",
         "name": "Belgium",
-        "flag": "Belgium",
+        "flag": "be",
         "color": "green"
     },
     {
         "id": "World_Map_Africa_Libya",
         "name": "Libya",
-        "flag": "Libya",
+        "flag": "ly",
         "color": "green"
     },
     {
         "id": "World_Map_Asia_Bhutan",
         "name": "Bhutan",
-        "flag": "Bhutan",
+        "flag": "bt",
         "color": "green"
     },
     {
         "id": "World_Map_Europe_Macedonia",
         "name": "Macedonia",
-        "flag": "Macedonia",
+        "flag": "mk",
         "color": "green"
     },
     {
         "id": "World_Map_Europe_Moldova",
         "name": "Moldova",
-        "flag": "Moldova",
+        "flag": "md",
         "color": "green"
     },
     {
         "id": "World_Map_Africa_Western_Sahara",
         "name": "Western Sahara",
-        "flag": "Western Sahara",
+        "flag": "eh",
         "color": "green"
     },
     {
         "id": "World_Map_Europe_Albania",
         "name": "Albania",
-        "flag": "Albania",
+        "flag": "al",
         "color": "green"
     },
     {
         "id": "World_Map_Asia_Turkmenistan",
         "name": "Turkmenistan",
-        "flag": "Turkmenistan",
+        "flag": "tm",
         "color": "green"
     },
     {
         "id": "World_Map_Europe_Belarus",
         "name": "Belarus",
-        "flag": "Belarus",
+        "flag": "by",
         "color": "green"
     },
     {
@@ -1106,91 +1106,91 @@
     {
         "id": "World_Map_South_America_French_Guiana",
         "name": "Guyana Francesa",
-        "flag": "French Guiana",
+        "flag": "gf",
         "color": "green"
     },
     {
         "id": "World_Map_Europe_Slovenia",
         "name": "Slovenia",
-        "flag": "Slovenia",
+        "flag": "si",
         "color": "green"
     },
     {
         "id": "World_Map_Africa_Zimbabwe",
         "name": "Zimbabwe",
-        "flag": "Zimbabwe",
+        "flag": "zw",
         "color": "green"
     },
     {
         "id": "World_Map_Europe_Norway",
         "name": "Norway",
-        "flag": "Norway",
+        "flag": "no",
         "color": "green"
     },
     {
         "id": "World_Map_Oceania_Australia",
         "name": "Australia",
-        "flag": "Australia",
+        "flag": "au",
         "color": "green"
     },
     {
         "id": "North_America_World_Map_Panama",
         "name": "Panamá",
-        "flag": "Panama",
+        "flag": "pa",
         "color": "green"
     },
     {
         "id": "World_Map_Asia_United_Arab_Emirates",
         "name": "Emiratos Árabes Unidos",
-        "flag": "United Arab Emirates",
+        "flag": "ae",
         "color": "green"
     },
     {
         "id": "World_Map_Asia_Israel",
         "name": "Israel",
-        "flag": "Israel",
+        "flag": "il",
         "color": "green"
     },
     {
         "id": "World_Map_Oceania_New_Caledonia_France_",
         "name": "Oceania New Caledonia France",
-        "flag": "Oceania New Caledonia France",
+        "flag": "nc",
         "color": "green"
     },
     {
         "id": "World_Map_Africa_Jibouti",
         "name": "Jibouti",
-        "flag": "Jibouti",
+        "flag": "dj",
         "color": "green"
     },
     {
         "id": "World_Map_Asia_Kuwait",
         "name": "Kuwait",
-        "flag": "Kuwait",
+        "flag": "kw",
         "color": "green"
     },
     {
         "id": "North_America_World_Map_The_Bahamas",
         "name": "Las Bahamas",
-        "flag": "The Bahamas",
+        "flag": "bs",
         "color": "green"
     },
     {
         "id": "World_Map_Antarctica_Antarctica_ice_shelf6",
         "name": "Antártica",
-        "flag": "Antarctica",
+        "flag": "aq",
         "color": "green"
     },
     {
         "id": "World_Map_Africa_Chad",
         "name": "Chad",
-        "flag": "Chad",
+        "flag": "td",
         "color": "green"
     },
     {
         "id": "North_America_World_Map_US_U_S__Hawaii",
         "name": "Hawaii",
-        "flag": "USA",
+        "flag": "us",
         "color": "green"
     }
 ]
