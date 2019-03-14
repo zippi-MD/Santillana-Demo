@@ -286,8 +286,9 @@ class StoryViewController: UIViewController{
         
         questionToastView.isHidden = false
         questionToastView.center.x = self.view.center.x
+        guard let userResponse = countriesInfo[nodeName]?.name else { return }
         
-        if cleanCountryName(nodeName) == actualQuestion.answer{
+        if userResponse == actualQuestion.answer {
             print("Respuesta correcta")
             questionToastImage.image = UIImage(named: "right_answer")
             questionToastLabel.text = "Correcto"
@@ -330,6 +331,7 @@ class StoryViewController: UIViewController{
                     self.questionToastView.layer.opacity = 1.0
                     self.questionToastView.frame.origin.y -= 300
                 })
+                
                 
                 UIView.addKeyframe(withRelativeStartTime: 3.0/5.0, relativeDuration: 2.0/5.0, animations: {
                     self.questionToastView.frame.origin.y += 300
