@@ -41,7 +41,7 @@ class StoryViewController: UIViewController{
     @IBOutlet weak var backToMap: UIView!
     
     @IBOutlet weak var scorePanel: UIView!
-    
+    @IBOutlet weak var scoreHeart: UIImageView!
     @IBOutlet weak var scoreLabel: UILabel!
     
     @IBOutlet weak var foodInformation: UIView!
@@ -74,9 +74,9 @@ class StoryViewController: UIViewController{
     
     var countries = [SCNNode]()
     
-    var countryColors: [UIColor] = [.red, .blue, .green, .cyan, .gray]
+    var countryColors: [UIColor] = UIColor.Santillana.colors
     
-    var continent = SCNNode()
+    var world = SCNNode()
     
     var selectedContry: String?
     var selectedCountryHitPosition: SCNVector3?
@@ -87,7 +87,6 @@ class StoryViewController: UIViewController{
         let viewBounds = view.bounds
         return CGPoint(x: viewBounds.width / 2.0, y: viewBounds.height / 2.0)
     }
-    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -116,11 +115,15 @@ class StoryViewController: UIViewController{
         
         //informationView.isHidden = true
         
+
+        
         loadSceneModels()
         setupConfiguration()
         loadQuestions()
         loadCountries()
     }
+    
+
     
     func setupConfiguration(){
         
@@ -132,6 +135,8 @@ class StoryViewController: UIViewController{
         
         sceneView.debugOptions = .showFeaturePoints
         //sceneView.showsStatistics = true
+        
+        
     }
     
     //Creo que queda mejor poner loadQuestions
@@ -187,12 +192,14 @@ class StoryViewController: UIViewController{
     }
     
     func loadSceneModels(){
-        let storyScene = SCNScene(named: "StoryAssets.scnassets/Models/America.scn")!
+        let storyScene = SCNScene(named: "StoryAssets.scnassets/Models/world.scn")!
         
         for childNode in storyScene.rootNode.childNodes {
             childNode.geometry?.firstMaterial = SCNMaterial()
-            childNode.geometry?.firstMaterial?.diffuse.contents = countryColors.randomElement()!.withAlphaComponent(0.8)
+            childNode.geometry?.firstMaterial?.diffuse.contents = countryColors.randomElement()!
             childNode.rotation = SCNVector4(0, 0, 0, 90)
+            childNode.position.x += 200
+            childNode.position.y += 200
             countries.append(childNode)
         }
         
@@ -209,7 +216,7 @@ class StoryViewController: UIViewController{
     
     @IBAction func backToMap(_ sender: UIButton) {
         
-        for country in continent.childNodes{
+        for country in world.childNodes{
             SCNTransaction.animationDuration = 0.5
             country.opacity = 1
             
@@ -244,6 +251,13 @@ class StoryViewController: UIViewController{
             scorePanel.isHidden = false
             scoreLabel.text = "\(self.leftLives)"
             
+            UIView.animateKeyframes(withDuration: 1.0, delay: 0, options: [.repeat, .autoreverse], animations: {
+                let jumpTransform = CGAffineTransform(translationX: 0, y: -3)
+                let transform = CGAffineTransform(scaleX: 1.1, y: 1.1)
+                let mergeTransform = transform.concatenating(jumpTransform)
+                self.scoreHeart.transform = mergeTransform
+            }, completion: nil)
+            
             gameStateButton.setTitle("Abandonar", for: .normal)
             
             startGame.backgroundColor = UIColor.red.withAlphaComponent(0.5)
@@ -274,8 +288,9 @@ class StoryViewController: UIViewController{
         
         questionToastView.isHidden = false
         questionToastView.center.x = self.view.center.x
+        guard let userResponse = countriesInfo[nodeName]?.name else { return }
         
-        if cleanCountryName(nodeName) == actualQuestion.answer{
+        if userResponse == actualQuestion.answer {
             print("Respuesta correcta")
             questionToastImage.image = UIImage(named: "right_answer")
             questionToastLabel.text = "Correcto"
@@ -319,6 +334,7 @@ class StoryViewController: UIViewController{
                     self.questionToastView.frame.origin.y -= 300
                 })
                 
+                
                 UIView.addKeyframe(withRelativeStartTime: 3.0/5.0, relativeDuration: 2.0/5.0, animations: {
                     self.questionToastView.frame.origin.y += 300
                     self.questionToastView.layer.opacity = 0.0
@@ -349,7 +365,7 @@ class StoryViewController: UIViewController{
         guard let countryName = selectedContry else { return }
         
         
-        for country in continent.childNodes {
+        for country in world.childNodes {
             if country.name != countryName {
                 SCNTransaction.animationDuration = 0.5
                 country.opacity = 0
@@ -423,7 +439,7 @@ class StoryViewController: UIViewController{
     
     
     func cleanCountryName(_ name: String) -> String {
-        let undesired = ["World", "Map", "South", "North", "America"]
+        let undesired = ["World", "Map", "South", "North", "America", "Asia", "Europe", "South", "Africa"]
         
         var cleanName = name
         
@@ -460,14 +476,14 @@ extension StoryViewController: ARSCNViewDelegate {
                 
                 for country in self.countries {
                     country.scale = SCNVector3(0.1, 0.1, 0.1)
-                    country.position = SCNVector3(0.39, 0, 0.7)
-                    self.continent.addChildNode(country)
+                    country.position = SCNVector3(0.14, 0, 1)
+                    self.world.addChildNode(country)
                 }
-                self.continent.scale = SCNVector3(x: 1.0, y: 0.3, z: 1.0)
+                self.world.scale = SCNVector3(x: 1.0, y: 0.3, z: 1.0)
                 
-                self.continent.position = SCNVector3(planeExtention.z/2, 0, planeExtention.z/2)
+                self.world.position = SCNVector3(planeExtention.z/2, 0, planeExtention.z/2)
                 
-                node.addChildNode(self.continent)
+                node.addChildNode(self.world)
             
                 
             }
@@ -509,7 +525,7 @@ extension StoryViewController: ARSCNViewDelegate {
                     self.countryImage.image = nil
                     
                     
-                    if let imageName = self.countriesInfo[nodeName]?.flag.uppercased() {
+                    if let imageName = self.countriesInfo[nodeName]?.flag {
                         if let image = UIImage(named: imageName){
                             self.countryImage.image = image
                         }
@@ -611,6 +627,29 @@ extension StoryViewController: ARSCNViewDelegate {
                 
             }
         }
+    }
+    
+}
+
+func generateColorFromRGB(_ red: Int, _ green: Int, _ blue: Int) -> UIColor {
+    return UIColor(red: CGFloat(red)/255, green: CGFloat(green)/255, blue: CGFloat(blue)/255, alpha: 1)
+}
+
+extension UIColor{
+    struct Santillana {
+        
+        
+        static var green = generateColorFromRGB(46, 204, 113)
+        static var red = generateColorFromRGB(231, 76, 60)
+        static var blue = generateColorFromRGB(52, 152, 219)
+        static var purple = generateColorFromRGB(155, 89, 182)
+        static var yellow = generateColorFromRGB(241, 196, 15)
+        static var orange = generateColorFromRGB(230, 126, 34)
+        static var deepBlue = generateColorFromRGB(52, 73, 94)
+        
+        static var colors = [green, red, blue, purple, yellow, orange, deepBlue]
+        
+        
     }
     
 }
