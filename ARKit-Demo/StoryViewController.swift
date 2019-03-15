@@ -198,6 +198,8 @@ class StoryViewController: UIViewController{
             childNode.geometry?.firstMaterial = SCNMaterial()
             childNode.geometry?.firstMaterial?.diffuse.contents = countryColors.randomElement()!
             childNode.rotation = SCNVector4(0, 0, 0, 90)
+            childNode.position.x += 200
+            childNode.position.y += 200
             countries.append(childNode)
         }
         
@@ -474,7 +476,7 @@ extension StoryViewController: ARSCNViewDelegate {
                 
                 for country in self.countries {
                     country.scale = SCNVector3(0.1, 0.1, 0.1)
-                    country.position = SCNVector3(0.39, 0, 0)
+                    country.position = SCNVector3(0.14, 0, 1)
                     self.world.addChildNode(country)
                 }
                 self.world.scale = SCNVector3(x: 1.0, y: 0.3, z: 1.0)
@@ -523,7 +525,7 @@ extension StoryViewController: ARSCNViewDelegate {
                     self.countryImage.image = nil
                     
                     
-                    if let imageName = self.countriesInfo[nodeName]?.flag.uppercased() {
+                    if let imageName = self.countriesInfo[nodeName]?.flag {
                         if let image = UIImage(named: imageName){
                             self.countryImage.image = image
                         }

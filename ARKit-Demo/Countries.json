@@ -116,7 +116,7 @@
     {
         "id": "World_Map_South_America_Peru",
         "name": "Peru",
-        "flag": "pea",
+        "flag": "pe",
         "color": "green"
     },
     {
@@ -164,49 +164,49 @@
     {
         "id": "North_America_World_Map_Haiti",
         "name": "Haiti",
-        "flag": "Haiti",
+        "flag": "ht",
         "color": "green"
     },
     {
         "id": "World_Map_Italy_Europe",
         "name": "Italy",
-        "flag": "Italy",
+        "flag": "it",
         "color": "green"
     },
     {
         "id": "North_America_World_Map_Grenada",
         "name": "Grenada",
-        "flag": "Grenada",
+        "flag": "gd",
         "color": "green"
     },
     {
         "id": "World_Map_Africa_Rep_Of_The_Congo",
         "name": "Rep Of The Congo",
-        "flag": "Rep Of The Congo",
+        "flag": "cd",
         "color": "green"
     },
     {
         "id": "World_Map_Asia_Pakistan",
         "name": "Pakistan",
-        "flag": "Pakistan",
+        "flag": "pk",
         "color": "green"
     },
     {
         "id": "World_Map_Asia_Azerbalian",
         "name": "Azerbalian",
-        "flag": "Azerbalian",
+        "flag": "az",
         "color": "green"
     },
     {
         "id": "World_Map_Asia_Turkey",
         "name": "Turkey",
-        "flag": "Turkey",
+        "flag": "tr",
         "color": "green"
     },
     {
         "id": "World_Map_Asia_Iraq",
         "name": "Iraq",
-        "flag": "Iraq",
+        "flag": "iq",
         "color": "green"
     },
     {
@@ -236,7 +236,7 @@
     {
         "id": "World_Map_South_America_Colombia",
         "name": "Colombia",
-        "flag": "Colombia",
+        "flag": "co",
         "color": "green"
     },
     {
@@ -254,7 +254,7 @@
     {
         "id": "World_Map_Africa_Niger",
         "name": "Niger",
-        "flag": "Niger",
+        "flag": "ng",
         "color": "green"
     },
     {
@@ -278,25 +278,25 @@
     {
         "id": "World_Map_Asia_Nepal",
         "name": "Nepal",
-        "flag": "Nepal",
+        "flag": "np",
         "color": "green"
     },
     {
         "id": "World_Map_Asia_Afghanistan",
         "name": "Afghanistan",
-        "flag": "Afghanistan",
+        "flag": "af",
         "color": "green"
     },
     {
         "id": "World_Map_Europe_Greece",
         "name": "Greece",
-        "flag": "Greece",
+        "flag": "gr",
         "color": "green"
     },
     {
         "id": "World_Map_Africa_Uganda",
         "name": "Uganda",
-        "flag": "Uganda",
+        "flag": "ug",
         "color": "green"
     },
     {
@@ -314,19 +314,19 @@
     {
         "id": "World_Map_Asia_Georgia",
         "name": "Georgia",
-        "flag": "Georgia",
+        "flag": "ge",
         "color": "green"
     },
     {
         "id": "World_Map_Europe_Russia_Europe",
         "name": "Russia",
-        "flag": "Russia",
+        "flag": "ru",
         "color": "green"
     },
     {
         "id": "North_America_World_Map_Honduras",
         "name": "Honduras",
-        "flag": "Honduras",
+        "flag": "hn",
         "color": "green"
     },
     {
@@ -338,13 +338,13 @@
     {
         "id": "Mexico_North_America_World_Map",
         "name": "México",
-        "flag": "Mexico",
+        "flag": "mx",
         "color": "green"
     },
     {
         "id": "World_Map_Asia_Russia",
         "name": "Rusia",
-        "flag": "Rusia",
+        "flag": "ru",
         "color": "green"
     },
     {
@@ -356,25 +356,25 @@
     {
         "id": "World_Map_Europe_Czech_Republic",
         "name": "Czech Republic",
-        "flag": "Czech Republic",
+        "flag": "cz",
         "color": "green"
     },
     {
         "id": "World_Map_Africa_Somalia",
         "name": "Somalia",
-        "flag": "Somalia",
+        "flag": "so",
         "color": "green"
     },
     {
         "id": "World_Map_South_America_Venezuela1",
         "name": "Venezuela",
-        "flag": "Venezuela",
+        "flag": "ve",
         "color": "green"
     },
     {
         "id": "North_America_World_Map_United_States_1_US",
         "name": "Estados Unidos",
-        "flag": "USA",
+        "flag": "us",
         "color": "green"
     },
     {
@@ -446,13 +446,13 @@
     {
         "id": "World_Map_Oceania_New_Zealand",
         "name": "Nueva Zelanda",
-        "flag": "Nueva Zelanda",
+        "flag": "nz",
         "color": "green"
     },
     {
         "id": "World_Map_Europe_Spain_Island_Spain1",
         "name": "España",
-        "flag": "España",
+        "flag": "es",
         "color": "green"
     },
     {
@@ -806,7 +806,7 @@
     {
         "id": "World_Map_Asia_Iran",
         "name": "Iran",
-        "flag": "Iran",
+        "flag": "ir",
         "color": "green"
     },
     {
